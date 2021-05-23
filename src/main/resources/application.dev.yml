@@ -1,6 +1,11 @@
 server:
-    port: 8083
+    port: 8081
 spring:
+    redis: 
+        host: ${ReddisHost}
+        password: ${ReddisKey}
+        ssl: true
+        port: ${ReddisPort}
     datasource:
         driverClassName: com.mysql.jdbc.Driver
         password: ${SQLPassword}
@@ -12,40 +17,22 @@ spring:
     jpa:
         hibernate:
             ddl-auto: update
-app:
-    logChatbotCron: 0 0/15 * * * ?
-    #logChatbotCron: 0 0/1 * * * ?
-    #checkAVLCronJob: 0 * * * * *
-    checkAVLCronJob: 0 0/7 * * * ?
+app:    
     checkByDistrictURL: https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={districtId}&date={dateVal}
     checkByPincodeURL: https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={pinCode}&date={dateVal}
-    dateFormat: dd-MM-yyyy
-    emailAuth: true
-    emailFrom: ${EMAILFrom}
-    emailFromPassword: ${EmailPassword}
-    emailHost: smtp.gmail.com
-    emailSmtpPort: 587
-    emailSocketFactory: 465
-    emailSocketFactoryClass: javax.net.ssl.SSLSocketFactory
-    host: ${HOST}
-    appHost: ${HOST}
-    maxNotificationPerAlertPerDay: 12
-    appPort: 80
-    telegramBotName: ${BotName}
-    telegramBotToken: ${BotToken}
-    timeDifferenceBetweenPreviousNotificationInMins: 60
-    twiloAccoundSid: ${TwiloAccoundSid}
-    twiloAuthToken: ${TwiloAuthToken}
-    twiloSendNumber: ${TwiloSendNumber}
-    debugMode: true
-    debugTelegramChatId: ${DebugTelegramId}
-    debugEmailId: ${DebugEmailId}
-    cowinAPIMaxRetry: 3
+    dateFormat: dd-MM-yyyy 
+    redishost: ${ReddisHost}
+    redispassword: ${ReddisKey}
+    redisssl: true
+    redisport: ${ReddisPort} 
+    #cronExp: 0 0/2 * * * ?
+    cronExp: 0 * * * * * 
+    cacheExpiryInSeconds: 310 
 logging:
     level:
+        root: ERROR
         com:
             prateek:
-                cowinAvailibility: DEBUG
-        org:
-            hibernate: ERROR
-        root: INFO
+                cowinAvailibility: INFO
+        
+        
