@@ -1,0 +1,39 @@
+server:
+    port: 8081
+spring:
+    redis: 
+        host: CowinAvailability.redis.cache.windows.net
+        password: sdymdD6xAf48xNKa3TepJghjHHrCkQgDZGokXaMoVNk=
+        ssl: true
+        port: 6380
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: MTFBWY@2537
+        #url: jdbc:mysql://cowin-avlb-mysql.mysql.database.azure.com:3306/cowin_availability_user_info
+        url: jdbc:mysql://cowin-avlb-mysql.mysql.database.azure.com:3306/cowin_availability_user_info
+        username: prateek@cowin-avlb-mysql
+    h2:
+        console:
+            enabled: false
+    jpa:
+        hibernate:
+            ddl-auto: update
+app:    
+    checkByDistrictURL: https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={districtId}&date={dateVal}
+    checkByPincodeURL: https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={pinCode}&date={dateVal}
+    dateFormat: dd-MM-yyyy 
+    redishost: CowinAvailability.redis.cache.windows.net
+    redispassword: sdymdD6xAf48xNKa3TepJghjHHrCkQgDZGokXaMoVNk=
+    redisssl: true
+    redisport: 6380
+    #cronExp: 0 0/2 * * * ?
+    cronExp: 0 * * * * * 
+    cacheExpiryInSeconds: 310 
+logging:
+    level:
+        root: ERROR
+        com:
+            prateek:
+                cowinAvailibility: INFO
+        
+        
